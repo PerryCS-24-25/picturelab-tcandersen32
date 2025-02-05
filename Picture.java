@@ -200,6 +200,25 @@ public class Picture extends SimplePicture {
     }
 
     /**
+     * Creates the grayscale of an image, setting each color value of a pixel to the average color value
+     */
+    public void blackAndWhite() {
+        Pixel[] pixels = getPixels();
+        for(Pixel pixel : pixels){
+            int avg = (pixel.getRed() + pixel.getGreen() + pixel.getBlue()) / 3;
+            if(avg > 127){
+                pixel.setRed(255);
+                pixel.setBlue(255);
+                pixel.setGreen(255);
+            } else {
+                pixel.setRed(0);
+                pixel.setBlue(0);
+                pixel.setGreen(0);
+            }
+        }
+    }
+
+    /**
      * Method that mirrors the picture around a vertical mirror in the center of
      * the picture from left to right
      */
@@ -318,7 +337,7 @@ public class Picture extends SimplePicture {
             }
         }
     }
-    
+
     /**
      * Fixes underwater images by expanding color range
      */

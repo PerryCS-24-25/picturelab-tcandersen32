@@ -107,12 +107,22 @@ public class PictureTester {
     }
 
     /**
-     * Method to test negating a picture
+     * Method to test grayscale
      */
     public static void testGrayscale() {
         Picture gorge = new Picture("gorge.jpg");
         gorge.explore();
         gorge.grayscale();
+        gorge.explore();
+    }
+
+    /**
+     * Method to test black and white
+     */
+    public static void testBlackAndWhite() {
+        Picture gorge = new Picture("gorge.jpg");
+        gorge.explore();
+        gorge.blackAndWhite();
         gorge.explore();
     }
 
@@ -144,7 +154,8 @@ public class PictureTester {
         //testKeepOnlyGreen();
         //testNegate();
         //testGrayscale();
-        testFixUnderwater();
+        testBlackAndWhite();
+        //testFixUnderwater();
         //testMirrorVertical();
         //testMirrorTemple();
         //testMirrorArms();
