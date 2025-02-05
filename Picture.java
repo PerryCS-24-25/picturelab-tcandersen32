@@ -175,6 +175,18 @@ public class Picture extends SimplePicture {
     }
 
     /**
+     * Creates the negative of the image, reversing red, green, and blue components
+     */
+    public void negate() {
+        Pixel[] pixels = getPixels();
+        for(Pixel pixel : pixels){
+            pixel.setRed(255 - pixel.getRed());
+            pixel.setBlue(255 - pixel.getBlue());
+            pixel.setGreen(255 - pixel.getGreen());
+        }
+    }
+
+    /**
      * Method that mirrors the picture around a vertical mirror in the center of
      * the picture from left to right
      */

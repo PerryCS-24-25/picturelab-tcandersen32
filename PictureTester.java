@@ -97,6 +97,16 @@ public class PictureTester {
     }
 
     /**
+     * Method to test negating a picture
+     */
+    public static void testNegate() {
+        Picture mark = new Picture("blue-mark.jpg");
+        mark.explore();
+        mark.negate();
+        mark.explore();
+    }
+
+    /**
      * Main method for testing. Every class can have a main method in Java
      */
     public static void main(String[] args) {
@@ -107,10 +117,10 @@ public class PictureTester {
         //testExplorer();
         //testScale();
         //testZeroBlue();
-        testKeepOnlyBlue();
+        //testKeepOnlyBlue();
         //testKeepOnlyRed();
         //testKeepOnlyGreen();
-        //testNegate();
+        testNegate();
         //testGrayscale();
         //testFixUnderwater();
         //testMirrorVertical();
