@@ -318,15 +318,55 @@ public class Picture extends SimplePicture {
             }
         }
     }
+    
+    /**
+     * Fixes underwater images by expanding color range
+     */
+    public void fixUnderwater() {
+        int minR = 255;
+        int maxR = 0;
+        int minG = 255;
+        int maxG = 0;
+        int minB = 255;
+        int maxB = 0;
+
+        Pixel[] pixels = getPixels();
+        for(Pixel pixel : pixels){
+            if(pixel.getRed() < minR)
+                minR = pixel.getRed();
+            if(pixel.getRed() > maxR)
+                maxR = pixel.getRed();
+
+            if(pixel.getGreen() < minG)
+                minG = pixel.getGreen();
+            if(pixel.getGreen() > maxG)
+                maxG = pixel.getGreen();
+
+            if(pixel.getBlue() < minB)
+                minB = pixel.getBlue();
+            if(pixel.getBlue() > maxB)
+                maxB = pixel.getBlue();
+        }
+
+        int rangeR = maxR - minR;
+        int rangeG = maxG - minG;
+        int rangeB = maxB - minB;
+
+        for(Pixel pixel : pixels){
+            pixel.setRed((pixel.getRed() - minR) * 255 / rangeR);
+            pixel.setBlue((pixel.getBlue() - minB) * 255 / rangeB);
+            pixel.setGreen((pixel.getGreen() - minG) * 255 / rangeG);
+        }
+    }
 
     /* Main method for testing - each class in Java can have a main 
      * method 
      */
     public static void main(String[] args) {
-        Picture beach = new Picture("beach.jpg");
-        beach.explore();
-        beach.zeroBlue();
-        beach.explore();
+        Picture water = new Picture("water.jpg");
+        water.explore();
+        water.fixUnderwater();
+        water.explore();
     }
 
 } // this } is the end of class Picture, put all new methods before this
