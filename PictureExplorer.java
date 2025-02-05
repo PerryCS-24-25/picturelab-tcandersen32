@@ -109,6 +109,10 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
      */
     private JMenu zoomMenu;
     /**
+     * file menu
+     */
+    private JMenu fileMenu;
+    /**
      * 25% zoom level
      */
     private JMenuItem twentyFive;
@@ -136,6 +140,18 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
      * 500% zoom level
      */
     private JMenuItem fiveHundred;
+    /**
+     * open file
+     */
+    private JMenuItem open;
+    /**
+     * save file
+     */
+    private JMenuItem save;
+    /**
+     * close file
+     */
+    private JMenuItem close;
 
     /**
      * The picture being explored
@@ -234,6 +250,11 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
         twoHundred = new JMenuItem("200%");
         fiveHundred = new JMenuItem("500%");
 
+        fileMenu = new JMenu("File");
+        open = new JMenuItem("Open...");
+        save = new JMenuItem("Save...");
+        close = new JMenuItem("Close");
+
         // add the action listeners
         twentyFive.addActionListener(this);
         fifty.addActionListener(this);
@@ -242,6 +263,9 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
         hundredFifty.addActionListener(this);
         twoHundred.addActionListener(this);
         fiveHundred.addActionListener(this);
+        open.addActionListener(this);
+        save.addActionListener(this);
+        close.addActionListener(this);
 
         // add the menu items to the menus
         zoomMenu.add(twentyFive);
@@ -253,6 +277,10 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
         zoomMenu.add(fiveHundred);
         menuBar.add(zoomMenu);
 
+        fileMenu.add(open);
+        fileMenu.add(save);
+        fileMenu.add(close);
+        menuBar.add(fileMenu);
         // set the menu bar to this menu
         pictureFrame.setJMenuBar(menuBar);
     }
@@ -344,6 +372,21 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
             this.zoom(5.0);
             enableZoomItems();
             fiveHundred.setEnabled(false);
+        }
+
+        if (a.getActionCommand().equals(close.getActionCommand())) {
+            pictureFrame.dispose();
+        }
+
+        if (a.getActionCommand().equals(open.getActionCommand())) {
+            Picture newPic = FileChooser.showOpenDialog(pictureFrame);
+            if(newPic != null){
+                newPic.explore();
+            }
+        }
+
+        if (a.getActionCommand().equals(save.getActionCommand())) {
+            FileChooser.showSaveDialog(pictureFrame, this.picture);
         }
     }
 
