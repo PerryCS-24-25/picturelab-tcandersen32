@@ -187,6 +187,19 @@ public class Picture extends SimplePicture {
     }
 
     /**
+     * Creates the grayscale of an image, setting each color value of a pixel to the average color value
+     */
+    public void grayscale() {
+        Pixel[] pixels = getPixels();
+        for(Pixel pixel : pixels){
+            int avg = (pixel.getRed() + pixel.getGreen() + pixel.getBlue()) / 3;
+            pixel.setRed(avg);
+            pixel.setBlue(avg);
+            pixel.setGreen(avg);
+        }
+    }
+
+    /**
      * Method that mirrors the picture around a vertical mirror in the center of
      * the picture from left to right
      */
