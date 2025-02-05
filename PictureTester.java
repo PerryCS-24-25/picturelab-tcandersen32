@@ -28,6 +28,36 @@ public class PictureTester {
     }
 
     /**
+     * Method to test keepOnlyBlue
+     */
+    public static void testKeepOnlyBlue() {
+        Picture beach = new Picture("beach.jpg");
+        beach.explore();
+        beach.keepOnlyBlue();
+        beach.explore();
+    }
+
+    /**
+     * Method to test keepOnlyRed
+     */
+    public static void testKeepOnlyRed() {
+        Picture beach = new Picture("beach.jpg");
+        beach.explore();
+        beach.keepOnlyRed();
+        beach.explore();
+    }
+
+    /**
+     * Method to test keepOnlyGreen
+     */
+    public static void testKeepOnlyGreen() {
+        Picture beach = new Picture("beach.jpg");
+        beach.explore();
+        beach.keepOnlyGreen();
+        beach.explore();
+    }
+
+    /**
      * Method to test mirrorVertical
      */
     public static void testMirrorVertical() {
@@ -76,8 +106,8 @@ public class PictureTester {
 
         //testExplorer();
         //testScale();
-        testZeroBlue();
-        //testKeepOnlyBlue();
+        //testZeroBlue();
+        testKeepOnlyBlue();
         //testKeepOnlyRed();
         //testKeepOnlyGreen();
         //testNegate();

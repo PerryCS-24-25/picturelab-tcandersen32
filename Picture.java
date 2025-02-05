@@ -149,6 +149,30 @@ public class Picture extends SimplePicture {
             }
         }   
     }
+    
+    /**
+     * Keeps only blue, removing all red and green from this image
+     */
+    public void keepOnlyBlue() {
+        zeroRed();
+        zeroGreen();
+    }
+
+    /**
+     * Keeps only red, removing all blue and green from this image
+     */
+    public void keepOnlyRed() {
+        zeroBlue();
+        zeroGreen();
+    }
+    
+    /**
+     * Keeps only green, removing all red and blue from this image
+     */
+    public void keepOnlyGreen() {
+        zeroRed();
+        zeroBlue();
+    }
 
     /**
      * Method that mirrors the picture around a vertical mirror in the center of
