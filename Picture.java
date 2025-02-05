@@ -130,14 +130,24 @@ public class Picture extends SimplePicture {
      * Removes all the red from this image.
      */
     public void zeroRed() {
-        //TODO: Write this method.
+        Pixel[][] pixels = this.getPixels2D();
+        for (Pixel[] rowArray : pixels) {
+            for (Pixel pixelObj : rowArray) {
+                pixelObj.setRed(0);
+            }
+        }
     }
 
     /**
      * Removes all the green from this image.
      */
     public void zeroGreen() {
-        //TODO: Write this method.   
+        Pixel[][] pixels = this.getPixels2D();
+        for (Pixel[] rowArray : pixels) {
+            for (Pixel pixelObj : rowArray) {
+                pixelObj.setGreen(0);
+            }
+        }   
     }
 
     /**

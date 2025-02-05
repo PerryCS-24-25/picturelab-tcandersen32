@@ -74,9 +74,9 @@ public class PictureTester {
         // and comment out the ones you don't want
         // to run
 
-        testExplorer();
+        //testExplorer();
         //testScale();
-        //testZeroBlue();
+        testZeroBlue();
         //testKeepOnlyBlue();
         //testKeepOnlyRed();
         //testKeepOnlyGreen();
