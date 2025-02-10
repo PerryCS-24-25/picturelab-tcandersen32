@@ -63,7 +63,7 @@ public class PictureTester {
     public static void testMirrorVertical() {
         Picture caterpillar = new Picture("caterpillar.jpg");
         caterpillar.explore();
-        caterpillar.mirrorVertical();
+        caterpillar.right2Left();
         caterpillar.explore();
     }
 
@@ -74,6 +74,16 @@ public class PictureTester {
         Picture temple = new Picture("temple.jpg");
         temple.explore();
         temple.mirrorTemple();
+        temple.explore();
+    }
+
+    /**
+     * Method to test mirrorTemple
+     */
+    public static void testMirrorArms() {
+        Picture temple = new Picture("snowman.jpg");
+        temple.explore();
+        temple.mirrorArms();
         temple.explore();
     }
 
@@ -154,11 +164,11 @@ public class PictureTester {
         //testKeepOnlyGreen();
         //testNegate();
         //testGrayscale();
-        testBlackAndWhite();
+        //testBlackAndWhite();
         //testFixUnderwater();
         //testMirrorVertical();
         //testMirrorTemple();
-        //testMirrorArms();
+        testMirrorArms();
         //testMirrorGull();
         //testMirrorDiagonal();
         //testCollage();

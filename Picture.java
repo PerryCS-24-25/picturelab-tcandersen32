@@ -219,10 +219,67 @@ public class Picture extends SimplePicture {
     }
 
     /**
+     * Method that mirrors the picture around a horizontal mirror in the center of
+     * the picture from top to bottom
+     */
+    public void top2Bottom() {
+        Pixel[][] pixels = this.getPixels2D();
+        Pixel topPixel = null;
+        Pixel bottomPixel = null;
+        int height = pixels.length;
+        int width = pixels[0].length;
+        for (int row = 0; row < height/2; row++) {
+            for (int col = 0; col < width; col++) {
+                topPixel = pixels[row][col];
+                bottomPixel = pixels[height - 1 - row][col];
+                bottomPixel.setColor(topPixel.getColor());
+            }
+        }
+    }
+
+    /**
+     * Method that mirrors the picture around a vertical mirror in the center of
+     * the picture from right to left
+     */
+    public void right2Left() {
+        Pixel[][] pixels = this.getPixels2D();
+        Pixel leftPixel = null;
+        Pixel rightPixel = null;
+        int width = pixels[0].length;
+        for (int row = 0; row < pixels.length; row++) {
+            for (int col = 0; col < width / 2; col++) {
+                leftPixel = pixels[row][col];
+                rightPixel = pixels[row][width - 1 - col];
+                leftPixel.setColor(rightPixel.getColor());
+            }
+        }
+    }
+
+
+    /**
+     * Method that mirrors the picture around a horizontal mirror in the center of
+     * the picture from bottom to top
+     */
+    public void bottom2Top() {
+        Pixel[][] pixels = this.getPixels2D();
+        Pixel topPixel = null;
+        Pixel bottomPixel = null;
+        int height = pixels.length;
+        int width = pixels[0].length;
+        for (int row = 0; row < height/2; row++) {
+            for (int col = 0; col < width; col++) {
+                topPixel = pixels[row][col];
+                bottomPixel = pixels[height - 1 - row][col];
+                topPixel.setColor(bottomPixel.getColor());
+            }
+        }
+    }
+
+    /**
      * Method that mirrors the picture around a vertical mirror in the center of
      * the picture from left to right
      */
-    public void mirrorVertical() {
+    public void left2Right() {
         Pixel[][] pixels = this.getPixels2D();
         Pixel leftPixel = null;
         Pixel rightPixel = null;
@@ -265,8 +322,40 @@ public class Picture extends SimplePicture {
             // loop from 13 to just before the mirror point
             for (int col = 13; col < mirrorPoint; col++) {
                 leftPixel = pixels[row][col];
+                count++;
                 rightPixel = pixels[row][mirrorPoint - col + mirrorPoint];
                 rightPixel.setColor(leftPixel.getColor());
+            }
+        }
+        System.out.println(count);
+    }
+
+    /**
+     * Mirror just part of a picture of a temple
+     */
+    public void mirrorArms() {
+        int mirrorPoint = 203;
+        Pixel leftPixel = null;
+        Pixel rightPixel = null;
+        Pixel[][] pixels = this.getPixels2D();
+
+        // loop through the rows
+        for (int row = 156; row < 177; row++) {
+            // loop from 13 to just before the mirror point
+            for (int col = 103; col < 160; col++) {
+                leftPixel = pixels[row][col];
+                rightPixel = pixels[row][mirrorPoint - col + mirrorPoint];
+                rightPixel.setColor(leftPixel.getColor());
+            }
+        }
+
+        // loop through the rows
+        for (int row = 177; row < 196; row++) {
+            // loop from 13 to just before the mirror point
+            for (int col = 103; col < 160; col++) {
+                leftPixel = pixels[row][col];
+                rightPixel = pixels[row][mirrorPoint - col + mirrorPoint];
+                leftPixel.setColor(rightPixel.getColor());
             }
         }
     }
@@ -382,10 +471,10 @@ public class Picture extends SimplePicture {
      * method 
      */
     public static void main(String[] args) {
-        Picture water = new Picture("water.jpg");
-        water.explore();
-        water.fixUnderwater();
-        water.explore();
+        Picture snowman = new Picture("snowman.jpg");
+        snowman.explore();
+        snowman.mirrorArms();
+        snowman.explore();
     }
 
 } // this } is the end of class Picture, put all new methods before this
