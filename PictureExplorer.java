@@ -298,6 +298,12 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
         blackAndWhite.addActionListener(this);
 
         // add the menu items to the menus
+
+        fileMenu.add(open);
+        fileMenu.add(save);
+        fileMenu.add(close);
+        menuBar.add(fileMenu);
+
         zoomMenu.add(twentyFive);
         zoomMenu.add(fifty);
         zoomMenu.add(seventyFive);
@@ -306,11 +312,6 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
         zoomMenu.add(twoHundred);
         zoomMenu.add(fiveHundred);
         menuBar.add(zoomMenu);
-
-        fileMenu.add(open);
-        fileMenu.add(save);
-        fileMenu.add(close);
-        menuBar.add(fileMenu);
 
         filterMenu.add(separate);
         filterMenu.add(invert);
