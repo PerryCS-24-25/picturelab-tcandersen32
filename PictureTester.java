@@ -98,6 +98,17 @@ public class PictureTester {
     }
 
     /**
+     * Method to test mirrorTemple
+     */
+    public static void testMirrorGull() {
+        Picture gull = new Picture("seagull.jpg");
+        gull.explore();
+        gull.mirrorGull();
+        gull.explore();
+    }
+
+
+    /**
      * Method to test edgeDetection
      */
     public static void testEdgeDetection() {
@@ -179,8 +190,8 @@ public class PictureTester {
         //testMirrorVertical();
         //testMirrorTemple();
         //testMirrorArms();
-        //testMirrorGull();
-        testMirrorDiagonal();
+        testMirrorGull();
+        //testMirrorDiagonal();
         //testCollage();
         //testCopy();
         //testEdgeDetection();

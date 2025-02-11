@@ -368,6 +368,27 @@ public class Picture extends SimplePicture {
     }
 
     /**
+     * Mirror just part of a picture of a temple
+     */
+    public void mirrorGull() {
+        int mirrorPoint = 363;
+        Pixel leftPixel = null;
+        Pixel rightPixel = null;
+        Pixel[][] pixels = this.getPixels2D();
+
+        // loop through the rows
+        for (int row = 228; row < 325; row++) {
+            // loop from 13 to just before the mirror point
+            for (int col = 239; col < 345; col++) {
+                leftPixel = pixels[row][col];
+                rightPixel = pixels[row][mirrorPoint - col + mirrorPoint];
+                rightPixel.setColor(leftPixel.getColor());
+            }
+        }
+
+    }
+
+    /**
      * copy from the passed fromPic to the specified startRow and startCol in the
      * current picture
      *
