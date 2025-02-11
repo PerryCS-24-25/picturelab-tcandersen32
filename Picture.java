@@ -294,17 +294,24 @@ public class Picture extends SimplePicture {
     }
 
     /**
-     *  Creates a vertical mirror image of the this picture.
+     * Method that mirrors the picture around a diagonal mirror 
      */
-    public void verticalReflection() {
-        //TODO: Write this method.
-    }
-
-    /**
-     * Converts this image into a horizontal mirror image of itself.
-     */
-    public void horizontalReflection() {
-        //TODO: Write this method.
+    public void mirrorDiagonal() {
+        Pixel[][] pixels = this.getPixels2D();
+        Pixel pixel1 = null;
+        Pixel pixel2 = null;
+        int height = pixels.length;
+        int width = pixels[0].length;
+        if(width < height){
+            height = width;
+        }
+        for (int row = 0; row < height; row++) {
+            for (int col = row + 1; col < height; col++) {
+                pixel1 = pixels[row][col];
+                pixel2 = pixels[col][row];
+                pixel1.setColor(pixel2.getColor());
+            }
+        }
     }
 
     /**
