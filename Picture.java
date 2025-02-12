@@ -470,6 +470,23 @@ public class Picture extends SimplePicture {
         }
     }
 
+    /**
+     * Makes the picture look like a cartoon
+     */
+    public void cartoon(){
+        int threshold = 35;
+        Pixel[][] pixels = getPixels2D();
+        for(int row = 1; row < pixels.length - 1; row++){
+            for(int col = 1; col < pixels[0].length - 1; col++){
+                Pixel p = pixels[row][col];
+                p.setRed(p.getRed() / threshold * threshold);
+                p.setGreen(p.getGreen() / (threshold + 5) * (threshold + 5));
+                p.setBlue(p.getBlue() / (threshold - 5) * (threshold - 5));
+            }
+        }
+
+    }
+    
 
     /**
      * copy from the passed fromPic to the specified startRow and startCol in the

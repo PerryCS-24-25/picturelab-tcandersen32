@@ -196,6 +196,17 @@ public class PictureTester {
     }
 
     /**
+     * Method to test cartoon
+     */
+    public static void testCartoon() {
+        Picture mark = new Picture("blue-mark.jpg");
+        mark.explore();
+        mark.cartoon();
+        mark.explore();
+    }
+
+
+    /**
      * Main method for testing. Every class can have a main method in Java
      */
     public static void main(String[] args) {
@@ -222,11 +233,12 @@ public class PictureTester {
         //testCopy();
         //testEdgeDetection();
         //testEdgeDetection2();
-        testChromakey();
+        //testChromakey();
         //testEncodeAndDecode();
         //testGetCountRedOverValue(250);
         //testSetRedToHalfValueInTopHalf();
         //testClearBlueOverValue(200);
         //testGetAverageForColumn(0);
+        testCartoon();
     }
 }

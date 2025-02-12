@@ -207,6 +207,11 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
      * Chromakey
      */
     private JMenuItem chromakey;
+    
+    /**
+     * Cartoon
+     */
+    private JMenuItem cartoon;
 
     /**
      * The picture being explored
@@ -322,6 +327,7 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
         hide = new JMenuItem("Hide Image...");
         unhide = new JMenuItem("Unhide Image");
         chromakey = new JMenuItem("Chroma Key");
+        cartoon = new JMenuItem("Cartoon");
 
 
         // add the action listeners
@@ -346,6 +352,7 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
         hide.addActionListener(this);
         unhide.addActionListener(this);
         chromakey.addActionListener(this);
+        cartoon.addActionListener(this);
 
 
         // add the menu items to the menus
@@ -375,6 +382,7 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
         filterMenu.add(hide);
         filterMenu.add(unhide);
         filterMenu.add(chromakey);
+        filterMenu.add(cartoon);
         menuBar.add(filterMenu);
 
         // set the menu bar to this menu
@@ -555,6 +563,12 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
             Picture newPic = new Picture((SimplePicture)picture);
             Picture bg = FileChooser.showOpenDialog(pictureFrame);
             newPic.chromakey(bg, swatchColor.getRed(), swatchColor.getGreen(), swatchColor.getBlue());
+            newPic.explore();
+        }
+
+        if (a.getActionCommand().equals(cartoon.getActionCommand())) {
+            Picture newPic = new Picture((SimplePicture)picture);
+            newPic.cartoon();
             newPic.explore();
         }
     }
