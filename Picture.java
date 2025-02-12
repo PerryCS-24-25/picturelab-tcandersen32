@@ -388,6 +388,56 @@ public class Picture extends SimplePicture {
 
     }
 
+
+    /**
+     * Encodes a message into a picture
+     * @param message a Black and White message to encode into a picture
+     */
+    public void encode(Picture message){
+        message.blackAndWhite();
+        Pixel[][] pixels = this.getPixels2D();
+        Pixel[][] messagePixels = message.getPixels2D();
+        for(int row = 0; row < pixels.length; row++){
+            for(int col = 0; col < pixels[row].length; col++){
+                pixels[row][col].setRed((pixels[row][col].getRed() / 2) * 2);
+            }
+        }
+
+        for(int row = 0; row < messagePixels.length; row++){
+            for(int col = 0; col < messagePixels[0].length; col++){
+                if(row < pixels.length && col < pixels[0].length && messagePixels[row][col].getRed() == 0){
+                    pixels[row][col].setRed(pixels[row][col].getRed() + 1);
+                }
+            }
+        }
+    }
+
+    /**
+     * decodes a message hidden in a picture
+     * @return the Black and White message hidden in the picture
+     */
+    public Picture decode(){
+        Picture message = new Picture(this);
+        Pixel[][] pixels = this.getPixels2D();
+        Pixel[][] messagePixels = message.getPixels2D();
+
+        for(int row = 0; row < pixels.length; row++){
+            for(int col = 0; col < pixels[row].length; col++){
+                if(pixels[row][col].getRed() % 2 == 1){
+                    messagePixels[row][col].setRed(0);
+                    messagePixels[row][col].setBlue(0);
+                    messagePixels[row][col].setGreen(0);
+                } else {
+                    messagePixels[row][col].setRed(255);
+                    messagePixels[row][col].setBlue(255);
+                    messagePixels[row][col].setGreen(255);
+                }
+            }
+        }
+
+        return message;
+    }
+
     /**
      * copy from the passed fromPic to the specified startRow and startCol in the
      * current picture

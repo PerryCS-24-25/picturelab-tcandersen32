@@ -170,6 +170,20 @@ public class PictureTester {
     }
 
     /**
+     * Method to test encoding and decoding
+     */
+    public static void testEncodeAndDecode() {
+        Picture beach = new Picture("beach.jpg");
+        beach.explore();
+        Picture message = new Picture("msg.jpg");
+        message.explore();
+        beach.encode(message);
+        beach.explore();
+        Picture message2 = beach.decode();
+        message2.explore();
+    }
+
+    /**
      * Main method for testing. Every class can have a main method in Java
      */
     public static void main(String[] args) {
@@ -190,14 +204,14 @@ public class PictureTester {
         //testMirrorVertical();
         //testMirrorTemple();
         //testMirrorArms();
-        testMirrorGull();
+        //testMirrorGull();
         //testMirrorDiagonal();
         //testCollage();
         //testCopy();
         //testEdgeDetection();
         //testEdgeDetection2();
         //testChromakey();
-        //testEncodeAndDecode();
+        testEncodeAndDecode();
         //testGetCountRedOverValue(250);
         //testSetRedToHalfValueInTopHalf();
         //testClearBlueOverValue(200);
