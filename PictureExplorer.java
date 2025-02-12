@@ -194,14 +194,19 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
     private JMenuItem right2Left;
 
     /**
-     * Mirror right to left
+     * Hide message
      */
     private JMenuItem hide;
 
     /**
-     * Mirror right to left
+     * Reveal message
      */
     private JMenuItem unhide;
+
+    /**
+     * Chromakey
+     */
+    private JMenuItem chromakey;
 
     /**
      * The picture being explored
@@ -316,6 +321,7 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
         left2Right = new JMenuItem("Mirror Left to Right");
         hide = new JMenuItem("Hide Image...");
         unhide = new JMenuItem("Unhide Image");
+        chromakey = new JMenuItem("Chroma Key");
 
 
         // add the action listeners
@@ -339,6 +345,7 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
         left2Right.addActionListener(this);
         hide.addActionListener(this);
         unhide.addActionListener(this);
+        chromakey.addActionListener(this);
 
 
         // add the menu items to the menus
@@ -367,6 +374,7 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
         filterMenu.add(left2Right);
         filterMenu.add(hide);
         filterMenu.add(unhide);
+        filterMenu.add(chromakey);
         menuBar.add(filterMenu);
 
         // set the menu bar to this menu
@@ -535,10 +543,19 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
             Picture newPic = new Picture((SimplePicture)picture);
             newPic.encode(msg);
             newPic.explore();
-        }if (a.getActionCommand().equals(unhide.getActionCommand())) {
+        }
+        
+        if (a.getActionCommand().equals(unhide.getActionCommand())) {
             Picture newPic = new Picture((SimplePicture)picture);
             Picture msg = newPic.decode();
             msg.explore();
+        }
+
+        if (a.getActionCommand().equals(chromakey.getActionCommand())) {
+            Picture newPic = new Picture((SimplePicture)picture);
+            Picture bg = FileChooser.showOpenDialog(pictureFrame);
+            newPic.chromakey(bg, swatchColor.getRed(), swatchColor.getGreen(), swatchColor.getBlue());
+            newPic.explore();
         }
     }
 

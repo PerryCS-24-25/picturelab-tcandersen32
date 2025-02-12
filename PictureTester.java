@@ -184,6 +184,18 @@ public class PictureTester {
     }
 
     /**
+     * Method to test chromakey
+     */
+    public static void testChromakey() {
+        Picture mark = new Picture("blue-mark.jpg");
+        Picture moon = new Picture("moon-surface.jpg");
+        mark.explore();
+        moon.explore();
+        mark.chromakey(moon, 0, 20, 60);
+        mark.explore();
+    }
+
+    /**
      * Main method for testing. Every class can have a main method in Java
      */
     public static void main(String[] args) {
@@ -210,8 +222,8 @@ public class PictureTester {
         //testCopy();
         //testEdgeDetection();
         //testEdgeDetection2();
-        //testChromakey();
-        testEncodeAndDecode();
+        testChromakey();
+        //testEncodeAndDecode();
         //testGetCountRedOverValue(250);
         //testSetRedToHalfValueInTopHalf();
         //testClearBlueOverValue(200);

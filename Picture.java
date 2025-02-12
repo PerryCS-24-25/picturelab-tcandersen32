@@ -439,6 +439,39 @@ public class Picture extends SimplePicture {
     }
 
     /**
+     * Replaces a certain color with a background
+     * @param background The background to put in the picture
+     * @param red        Red value of background
+     * @param blue        Blue value of background
+     * @param green        Green value of background
+     * @return the Black and White message hidden in the picture
+     */
+    public void chromakey(Picture background, int red, int green, int blue){
+        Pixel[][] fgPixels = getPixels2D();
+        Pixel[][] bgPixels = background.getPixels2D();
+
+        int height = (fgPixels.length < bgPixels.length) ? fgPixels.length : bgPixels.length;
+        int width = (fgPixels[0].length < bgPixels[0].length) ? fgPixels[0].length : bgPixels[0].length;
+
+        int tolerance = 40;
+
+        for(int row = 0; row < height; row++){
+            for(int col = 0; col < width; col++){
+                Pixel fgP = fgPixels[row][col];
+                Pixel bgP = bgPixels[row][col];
+
+                if( red - fgP.getRed() < tolerance && fgP.getRed() - red < tolerance && 
+                    green - fgP.getGreen() < tolerance && fgP.getGreen() - green < tolerance &&
+                    blue - fgP.getBlue() < tolerance && fgP.getBlue() - blue < tolerance) {
+
+                    fgP.setColor(bgP.getColor());
+                }
+            }
+        }
+    }
+
+
+    /**
      * copy from the passed fromPic to the specified startRow and startCol in the
      * current picture
      *
@@ -549,10 +582,7 @@ public class Picture extends SimplePicture {
      * method 
      */
     public static void main(String[] args) {
-        Picture snowman = new Picture("snowman.jpg");
-        snowman.explore();
-        snowman.mirrorArms();
-        snowman.explore();
+        PictureTester.main(new String[0]);
     }
 
 } // this } is the end of class Picture, put all new methods before this
