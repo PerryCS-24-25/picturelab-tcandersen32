@@ -207,6 +207,20 @@ public class PictureTester {
 
 
     /**
+     * Method to test median filter
+     */
+    public static void testMedian(){
+        Picture[] statues = new Picture[9];
+        for(int i = 0; i < statues.length; i++){
+            statues[i] = new Picture("T" + (i+1) + ".jpg");
+            statues[i].explore();
+        }
+        Picture newPic = new Picture(statues[0].getWidth(), statues[0].getHeight());
+        newPic.medianPictures(statues);
+        newPic.explore();
+    }
+
+    /**
      * Main method for testing. Every class can have a main method in Java
      */
     public static void main(String[] args) {
@@ -239,6 +253,7 @@ public class PictureTester {
         //testSetRedToHalfValueInTopHalf();
         //testClearBlueOverValue(200);
         //testGetAverageForColumn(0);
-        testCartoon();
+        //testCartoon();
+        testMedian();
     }
 }

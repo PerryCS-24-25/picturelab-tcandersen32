@@ -486,7 +486,74 @@ public class Picture extends SimplePicture {
         }
 
     }
-    
+
+    /**
+     * Applies the median filter to filter out noise
+     * 
+     * @param pictures an array of pictures to use
+     */
+    public void medianPictures(Picture[] pictures){
+        Pixel[][] pixels = getPixels2D();
+        Pixel[][][] newPixels = new Pixel[pictures.length][0][0];
+        for(int i = 0; i < pictures.length; i++){
+            newPixels[i] = pictures[i].getPixels2D();
+        }
+        for(int i = 0; i < pixels.length; i++){
+            for(int j = 0; j < pixels[0].length; j++){
+                int[] pixelsR = new int[newPixels.length];
+                int[] pixelsG = new int[newPixels.length];
+                int[] pixelsB = new int[newPixels.length];
+                for(int k = 0; k < newPixels.length; k++){
+                    pixelsR[k] = newPixels[k][i][j].getRed();
+                    pixelsG[k] = newPixels[k][i][j].getGreen();
+                    pixelsB[k] = newPixels[k][i][j].getBlue();
+                }
+                int red = median(pixelsR);
+                int green = median(pixelsG);
+                int blue = median(pixelsB);
+                pixels[i][j].setColor(new Color(red, green, blue));
+            }
+        }
+
+    }
+
+    private static int median(int[] list){
+        if(list.length == 2){
+            return (list[0] + list[1]) / 2;
+        }
+        if(list.length == 1){
+            return list[0];
+        }
+        
+        int minIndex = 0;
+        int maxIndex = 1;
+        for(int i = 0; i < list.length; i++){
+            if(list[i] < list[minIndex]){
+                minIndex = i;
+            }
+        }
+        for(int i = 0; i < list.length; i++){
+            if(list[i] > list[maxIndex] && i != minIndex){
+                maxIndex = i;
+            }
+        }
+        int[] trimmedList = new int[list.length-2];
+        int skip1 = minIndex < maxIndex ? minIndex : maxIndex;
+        int skip2 = minIndex < maxIndex ? maxIndex : minIndex;
+        
+
+        for(int i = 0; i < skip1; i++){
+            trimmedList[i] = list[i];
+        }
+        for(int i = skip1 + 1; i < skip2; i++){
+            trimmedList[i - 1] = list[i];
+        }
+        for(int i = skip2 + 1; i < list.length; i++){
+            trimmedList[i - 2] = list[i];
+        }
+
+        return median(trimmedList);
+    }
 
     /**
      * copy from the passed fromPic to the specified startRow and startCol in the
@@ -600,6 +667,7 @@ public class Picture extends SimplePicture {
      */
     public static void main(String[] args) {
         PictureTester.main(new String[0]);
+        //System.out.println(median(new int[]{3, 3, 3, 3, 3, 3,}));
     }
 
 } // this } is the end of class Picture, put all new methods before this
